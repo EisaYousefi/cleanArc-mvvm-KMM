@@ -1,6 +1,7 @@
 package com.efb.cleanarc_mvvm_kmm.viewModel
 
 import com.efb.cleanarc_mvvm_kmm.domian.model.ItemResponse
+import com.efb.cleanarc_mvvm_kmm.domian.model.getMockResponses
 import com.efb.cleanarc_mvvm_kmm.domian.secase.GetRepos
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +18,7 @@ class GithubViewModel(private val getRepos: GetRepos) : SharedViewModel() {
             kotlin.runCatching {
                 getRepos.invoke()
             }.onSuccess {
-                _items.update { it }
+                _items.update { getMockResponses() }
             }.onFailure {
                 println(it.message)
             }
